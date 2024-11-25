@@ -1,0 +1,44 @@
+.content {
+    z-index: 3;
+}
+
+
+/* About */
+
+.custom-background-about {
+    position: relative; /* Nécessaire pour le positionnement des enfants */
+    color: white; /* Couleur du texte */
+    overflow: hidden; /* Évite que les éléments débordent */
+  }
+  
+  .custom-background-about:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../assets/img/hero-carousel/About.jpg') no-repeat center center; /* Chemin vers votre image */
+    background-size: cover; /* Couvre tout l'élément */
+    filter: blur(1px);
+    z-index: 1; /* Couche inférieure */
+  }
+  
+  .custom-background-about:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(221, 11, 15, 0.302); /* Couche sombre avec opacité */
+    z-index: 2; /* Couche intermédiaire */
+  }
+  
+  .text-content {
+    position: relative; /* Assure que le texte est au-dessus */
+    z-index: 3; /* Couche la plus haute pour le texte */
+    padding: 20px; /* Ajoute un peu d'espace autour du texte */
+  }
+  
+  

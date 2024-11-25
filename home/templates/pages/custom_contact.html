@@ -1,0 +1,108 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load cache %}
+
+{% block content %}
+
+
+  <main class="main">
+    {% include 'includes/pre-loader.html' %}
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" style="background-image: url({% static "assets/img/pages/Contacts.jpg" %});">
+      <div class="container position-relative">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-12 text-center text-white">
+
+              <h1 class="fw-bolder display-2">{% trans "Prenez contact avec nous dès aujourd'hui" %}</h1>
+              <p class="lead fw-normal text-muted mb-6 px-lg-10">
+                {% trans "Vous avez un nouveau projet en-tête? Dites nous vos besoins pour votre projet, nous répondrons le même jour." %}              </p>
+
+          </div>
+        </div>
+      </div>
+      
+  </div><!-- End Page Title -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt"></i>
+              <h3>{% trans "Addresse" %}</h3>
+              <p>Bona****, Douala, DL 00237</p>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone"></i>
+              <h3>{% trans "Téléphone" %}</h3>
+              <p>+237 623 254 856</p>
+            </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope"></i>
+              <h3>{% trans "Email" %}</h3>
+              <p>support@doulair.org</p>
+            </div>
+          </div><!-- End Info Item -->
+
+        </div>
+
+        <div class="row gy-4 mt-1">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d1253.8254470749357!2d11.504030505196516!3d3.885431237385126!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2srw!4v1723222257428!5m2!1sfr!2srw" class="map rounded" id="gmap_canvas" allowfullscreen="" eferrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div><!-- End Google Maps -->
+
+          <div class="col-lg-6">
+            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+
+
+  </main>
+
+  {% endblock %}

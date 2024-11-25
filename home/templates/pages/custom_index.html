@@ -1,0 +1,363 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load cache %}
+
+{% block content %}
+
+
+<main class="main">
+  {% include 'includes/pre-loader.html' %}
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <div class="info d-flex align-items-center content">
+        <div class="container">
+          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 text-center text-white">
+              <h3>{% trans "Bienvenu.e chez DOUALAIR" %}</h3>
+              <p>{% trans "Servir la Terre, le ciel et la mer" %}</p>
+              <a href="#get-started" class="btn-get-started">{% trans "Commencer" %}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-item">
+          <img src="{% static "assets/img/hero-carousel/Accueil.jpg" %}" alt="">
+        </div>
+
+        <div class="carousel-item active">
+          <img src="{% static "assets/img/hero-carousel/About.jpg" %}" alt="">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static "assets/img/hero-carousel/Services.jpg" %}" alt="">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static "assets/img/hero-carousel/Presse.jpg" %}" alt="">
+        </div>
+
+        <div class="carousel-item">
+          <img src="{% static "assets/img/hero-carousel/Opportunités.jpg" %}" alt="">
+        </div>
+        
+        <div class="carousel-item">
+          <img src="{% static "assets/img/hero-carousel/Other.jpg" %}" alt="">
+        </div>
+
+        <!--
+        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+        -->
+
+      </div>
+
+    </section><!-- /Hero Section -->
+
+
+    <!-- Alt Services Section -->
+    <section id="get-started" class="get-started section">
+
+      <div class="container">
+
+        <div class="row justify-content-around gy-4">
+          <div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="100"><img src="{% static "assets/img/DOUALAIR.png" %}" alt=""></div>
+
+          <div class="col-lg-5 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+            <h3>{% trans "Qui sommes - nous ?" %}</h3>
+            <p class="mb-4 lead fw-bold">{% trans "DOUALAIR, Société d’Exploitation Commerciale de l’aérogare de Douala est une société anonyme spécialisée dans les prestations de restauration aérienne." %}</p>
+            <p class="mb-4">{% trans "C’est une entreprise moderne et dynamique, qui s’est arrimée aux standards internationaux en matière d’hygiène et sécurité alimentaire. Son savoir-faire a fait d’elle une véritable force de proposition auprès de plusieurs compagnies aériennes et d’autres clients afin d’améliorer leur offre commerciale auprès de leurs passagers tout en respectant scrupuleusement les contraintes liées au transport aérien." %}</p>
+            <a href="{% url "about_us" %}"
+            class="btn btn-outline-primary"><span class="fas fa-book me-2"></span>{% trans "Lire plus..."%}</a>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Alt Services Section -->
+
+    
+    {% if services %}
+    <!-- Services Section -->
+    <section id="services" class="services section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>{% trans "Notre équipe de professionnel pour vous servir" %}</p>
+      </div><!-- End Section Title -->
+     
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+
+          {% for service in services %}
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="fa-solid fa-trowel-bricks"></i>
+              </div>
+              <h3>{{service.Nom}}</h3>
+              <p>{{service.Description |truncatewords_html:10}}.</p>
+              <a href="{% url "detail_service" service.pk %}" class="readmore stretched-link">{% trans "Lire plus" %} <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div><!-- End Service Item -->
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+    {% endif %}
+
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>{% trans "Domaines d'activité" %}</h2>
+        <p>{% trans "Servir sur terre, dans le ciel et dans la mer" %}</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+
+          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-remodeling">{% trans "Domaine 1" %}</li>
+            <li data-filter=".filter-construction">{% trans "Domaine 2" %}</li>
+            <li data-filter=".filter-repairs">{% trans "Domaine 3" %}</li>
+            <li data-filter=".filter-design">{% trans "Domaine 4" %}</li>
+          </ul><!-- End Portfolio Filters -->
+
+          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-remodeling">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image1.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>App 1</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image1.png" %}" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-construction">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image2.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Product 1</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image2.png" %}" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-repairs">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image3.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Branding 1</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image3.png" %}" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-design">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image4.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Books 1</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image4.png" %}" title="Branding 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-remodeling">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image1.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>App 2</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image1.png" %}" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-construction">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image2.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Product 2</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image2.png" %}" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-repairs">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image3.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Branding 2</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image3.png" %}" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-design">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image4.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Books 2</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image4.png" %}" title="Branding 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-remodeling">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image1.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>App 3</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image1.png" %}" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-construction">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image2.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Product 3</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image2.png" %}" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-repairs">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image3.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Branding 3</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image3.png" %}" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-design">
+              <div class="portfolio-content h-100">
+                <img src="{% static "assets/img/projects/Image4.png" %}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Books 3</h4>
+                  <p>Lorem ipsum, dolor sit amet consectetur</p>
+                  <a href="{% static "assets/img/projects/Image4.png" %}" title="Branding 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="project-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div>
+            </div><!-- End Portfolio Item -->
+
+          </div><!-- End Portfolio Container -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Projects Section -->
+
+    <!-- Recent Blog Posts Section -->
+    <section id="recent-blog-posts" class="recent-blog-posts section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>{% trans "Posts de blog récents" %}</h2>
+        <p>{% trans "Suivez toute l'actualité sur DOUALAIR" %}</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-5">
+
+          {% if articles %}
+            {% for article in articles %}
+              <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
+
+                  <div class="post-img position-relative overflow-hidden">
+                    <img src="{{article.Image.url}}" class="img-fluid" alt="">
+                    <span class="post-date">{{article.date_mise_a_jour}}</span>
+                  </div>
+
+                  <div class="post-content d-flex flex-column">
+
+                    <h3 class="post-title">{{article.Titre}}</h3>
+
+                    <div class="meta d-flex align-items-center">
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-person"></i> <span class="ps-2">DOUALAIR</span>
+                      </div>
+                      <span class="px-3 text-black-50">/</span>
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-folder2"></i> <span class="ps-2">{{article.Statut}}</span>
+                      </div>
+                    </div>
+
+                    <hr>
+
+                    <a href="{% url "article_detail" article.pk %}" class="readmore stretched-link"><span>{% trans "Lire plus..." %}</span><i class="bi bi-arrow-right"></i></a>
+
+                  </div>
+
+                </div>
+              </div><!-- End post item -->
+            {% endfor %}
+          {% else %}
+            <p>{% trans "Aucun article posté" %}</p>
+          {% endif %}
+
+        </div>
+
+      </div>
+
+    </section><!-- /Recent Blog Posts Section -->
+
+  </main>
+
+
+
+{% endblock content %}

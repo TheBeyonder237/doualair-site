@@ -1,0 +1,369 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load cache %}
+
+{% block content %}
+
+
+  <main class="main">
+    {% include 'includes/pre-loader.html' %}
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" style="background-image: url({% static "assets/img/pages/About.jpg" %});">
+      <div class="container position-relative">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-12 col-md-7 col-lg-6 text-center text-md-left text-white">
+            <h1 class="display-2 mb-4">{% trans "DOUALAIR et ses multiples services" %} <br class="d-none d-md-inline"></h1>
+            <p class="lead mb-4 text-muted">{% trans "Nous vous aidons dans la restauration pour vos différents évènements, sur terre, dans les airs ou en mer." %}</p>
+            <a href="{% url 'services' %}" class="btn btn-instagram me-3 animate-up-2">{% trans "Que faisons-nous ?"%}<span class="ms-2"><span class="fas fa-arrow-right"></span></span></a>
+
+          </div>
+        </div>
+      </div>
+      
+    </div><!-- End Page Title -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <div class="container">
+
+        <div class="row position-relative">
+
+          <div class="col-lg-7 about-img" data-aos="zoom-out" data-aos-delay="200"><img src="{% static "assets/img/DOUALAIR.png" %}"></div>
+
+          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="inner-title">{% trans "DOUALAIR et ses challenges" %}</h2>
+            <div class="our-story">
+              <h4>{% trans "Cameroun 1977" %}</h4>
+              <p class="lead">{% trans "DOUALAIR est une société anonyme spécialisée dans les prestations de restauration aérienne et collective, avec plus de 15 ans de partenariat technique avec Servair, un leader mondial dans le domaine du catering. L'entreprise, fondée en juillet 1977, se conforme aux standards internationaux en matière d'hygiène et de sécurité alimentaire, offrant un savoir-faire reconnu par plusieurs compagnies aériennes. Avec plus de 200 employés qualifiés, DOUALAIR propose divers services, notamment la restauration sur des bases offshore, des cantines d'entreprises, et des services traiteurs. " %}</p>
+              <!--
+              <ul>
+                <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commo</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Duis aute irure dolor in reprehenderit in</span></li>
+                <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea</span></li>
+              </ul>
+              -->
+
+              <div class="watch-video d-flex align-items-center position-relative">
+                <i class="bi bi-play-circle"></i>
+                <a href="{% static "#" %}" class="glightbox stretched-link">{% trans "Regarder la vidéo" %}</a>
+
+                <!--
+                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox stretched-link">Watch Video</a>
+                -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Stats Counter Section -->
+    <section id="stats-counter" class="stats-counter section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Stats</h2>
+        <p>{% trans "Laissons les chiffres parler pour nous" %}</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-emoji-smile color-blue flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+                <p>{% trans "Clienst satisfaits" %}</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-journal-richtext color-orange flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="5000" data-purecounter-duration="1" class="purecounter"></span>
+                <p>{% trans "Plats / jour" %}</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-headset color-green flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
+                <p>{% trans "Heures de travails" %}</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+          <div class="col-lg-3 col-md-6">
+            <div class="stats-item d-flex align-items-center w-100 h-100">
+              <i class="bi bi-people color-pink flex-shrink-0"></i>
+              <div>
+                <span data-purecounter-start="0" data-purecounter-end="200" data-purecounter-duration="1" class="purecounter"></span>
+                <p>{% trans "Travailleurs" %}</p>
+              </div>
+            </div>
+          </div><!-- End Stats Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Stats Counter Section -->
+    
+    <!-- Section -->
+    <section class="section section-lg bg-gray-200">
+        <figure class="position-absolute top-0 left-0 w-100 d-none d-md-block mt-n3">
+            <svg class="fill-gray-200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1920 43.4" style="enable-background:new 0 0 1920 43.4;" xml:space="preserve">
+               <path id"waves" d="M0,23.3c0,0,405.1-43.5,697.6,0c316.5,1.5,108.9-2.6,480.4-14.1c0,0,139-12.2,458.7,14.3 c0,0,67.8,19.2,283.3-22.7v35.1H0V23.3z"></path>
+            </svg>
+         </figure>
+        <div class="container">
+            <!-- Section Title -->
+          <div class="container section-title" data-aos="fade-up">
+            <h2 class="h1 fw-light"><span class="fw-bold">{% trans "Notre" %}</span> {% trans "histoire" %}</h2>
+            <p>{% trans "Une histoire qui mérite d'être racontée" %}</p>
+          </div><!-- End Section Title -->
+            <div class="row justify-content-center mt-6">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 col-lg-8">
+                        <div class="timeline timeline-one dark px-3 px-sm-0">
+                            <!-- Timeline Item 1 -->
+                            <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                                <h3 class="h4 mb-4">Present</h3>
+                                <p>{% trans "DOUALAIR, Société d’Exploitation Commerciale de l’aérogare de Douala, est spécialisée dans la restauration aérienne et collective. Actuellement, elle compte plus de 200 employés qualifiés et expérimentés, offrant une capacité de production de 5000 plateaux-repas par jour. L'entreprise est certifiée selon des normes internationales d'hygiène et de sécurité alimentaire, et elle entretient un partenariat de longue date avec SERVAIR, un leader mondial dans le domaine du catering." %}</p>
+                            </div>
+                            <!-- Timeline Item 2 -->
+                            <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                                <h3 class="h4 mb-4">{% trans "Notre premier produit" %}</h3>
+                                <p>{% trans "L'histoire de DOUAL'AIR débute en 1968 avec le relais aérien qui ravitaillait les aéronefs à Douala. En 1977, elle devient DOUAL'AIR après un contrat d'assistance technique avec le groupe MERIDIEN. À partir des années 1980, l'entreprise diversifie ses activités pour inclure le catering aérien, le traiteur public, et le ravitaillement des plateformes pétrolières. En 2007, après 30 ans de partenariat avec MERIDIEN, DOUAL'AIR signe un nouvel accord avec SERVAIR, renforçant ainsi sa position sur le marché." %}"
+                                </p>
+                            </div>
+                            <!-- Timeline Item 3 -->
+                            <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                                <h3 class="h4 mb-4">{% trans "Nos bureaux" %}</h3>
+                                <img class="mt-2" src="{% static 'assets/img/office.png' %}" alt="DOUALAIR SARL workspace" width="300" data-aos="zoom-in" data-aos-delay="100">
+                                <p>{% trans "Située à seulement 2 minutes des pistes de l’aéroport, DOUALAIR s'étend sur 4000 m², comprenant 2000 m² de locaux et 1500 m² dédiés à la production. L'entreprise a investi dans des installations modernes, notamment un nouveau bâtiment depuis 2001, pour répondre à la demande croissante en cuisine fraîche grâce à des technologies innovantes comme la cuisson sous vide." %}                                 </p>
+                            </div>
+                            <!-- Timeline Item 4 -->
+                            <div class="timeline-item warning" data-aos="fade-up" data-aos-delay="100">
+                                <h3 class="h4 mb-4">{% trans "Nos idéaux" %}</h3>
+                                <p>{% trans "DOUALAIR s'engage à améliorer la satisfaction et la fidélisation de ses clients en offrant des prestations de haute qualité. Avec un personnel compétent en art culinaire et un respect strict des normes de sécurité, l'entreprise vise à être un leader dans le domaine de la restauration aérienne et collective, étendant ses activités au-delà de l’aérogare de Douala." %}
+                                </p>
+                                <!--
+                                <img class="mt-2" src="{% static 'assets/img/signature.svg' %}" alt="signature" width="100">
+                            -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <figure class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2">
+            <svg class="fill-white" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1920 43.4" style="enable-background:new 0 0 1920 43.4;" xml:space="preserve">
+                <path id="waves" d="M0,23.3c0,0,405.1-43.5,697.6,0c316.5,1.5,108.9-2.6,480.4-14.1c0,0,139-12.2,458.7,14.3 c0,0,67.8,19.2,283.3-22.7v35.1H0V23.3z"></path>
+            </svg>
+        </figure>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2 class="h1 fw-light"><span class="fw-bold">{% trans "Notre" %}</span> {% trans "équipe" %}</h2>
+        <p>{% trans "Les pilliers qui soutiennent le travail satisfaisant" %}</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-5">
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
+            <div class="member-img">
+              <img src="{% static "assets/img/team/team8.png" %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info text-center">
+              <h4>Kingue Jules</h4>
+              <span>{% trans "Directeur Général" %}</span>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="200">
+            <div class="member-img">
+              <img src="{% static "assets/img/team/team1.png" %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info text-center">
+              <h4>Bionga Ginette</h4>
+              <span>{% trans "Responsable RP et Traiteur" %}</span>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="300">
+            <div class="member-img">
+              <img src="{% static "assets/img/team/team2.png" %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info text-center">
+              <h4>Aliyou Njikan</h4>
+              <span>{% trans "Responsable Financier" %}</span>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="400">
+            <div class="member-img">
+              <img src="{% static "assets/img/team/team3.png" %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info text-center">
+              <h4>Passiri Jonas</h4>
+              <span>{% trans "Responsable Technique" %}</span>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="500">
+            <div class="member-img">
+              <img src="{% static "assets/img/team/team4.png" %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info text-center">
+              <h4>Ntamack Philip</h4>
+              <span>{% trans "Responsable Sûreté" %}</span>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="600">
+            <div class="member-img">
+              <img src="{% static "assets/img/team/team5.png" %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info text-center">
+              <h4>Kouekam Romeo</h4>
+              <span>{% trans "Responsable Production" %}</span>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="700">
+            <div class="member-img">
+              <img src="{% static "assets/img/team/team6.png" %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info text-center">
+              <h4>Major Leon</h4>
+              <span>{% trans "Responsable des Ressources Humaines" %}</span>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="800">
+            <div class="member-img">
+              <img src="{% static "assets/img/team/team7.png" %}" class="img-fluid" alt="">
+              <div class="social">
+                <a href="#"><i class="bi bi-twitter-x"></i></a>
+                <a href="#"><i class="bi bi-facebook"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info text-center">
+              <h4>Zouatom J. P</h4>
+              <span>{% trans "Responsable Remote" %}</span>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Team Section -->
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 1,
+                  "spaceBetween": 40
+                },
+                "1200": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 20
+                }
+              }
+            }
+          </script>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section><!-- /Testimonials Section -->
+
+  </main>
+
+
+
+  {% endblock content %}

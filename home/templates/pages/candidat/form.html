@@ -1,0 +1,48 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<main>
+
+    {% include 'includes/pre-loader.html' %}
+  <!-- Section -->
+  <section class="min-vh-100 d-flex align-items-center dark-background" style="background: url({% static "assets/img/pages/Opportunités.jpg" %}) no-repeat center;">
+    <div class="container text-content">
+        <div class="row justify-content-center">
+            <div class="col-12 d-flex align-items-center justify-content-center">
+                <div class="signin-inner my-8 my-lg-8 bg-white shadow-soft border rounded border-gray-300 p-4 p-lg-5 w-100 fmxw-500">
+                    <div class="text-center text-md-center mb-4 mt-md-0">
+                        <h1 class="mb-0 h3">{% trans "Postuler dans DOUALAIR" %}</h1>
+                    </div>
+                    <form method="post" class="mt-4" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <!-- Form -->
+                        {% if form.non_field_errors %}
+                            {% for error in form.non_field_errors %}
+                                <span class="text-danger"> {{ error }} </span>
+                            {% endfor %}
+                        {% endif %}
+                        {% for field in form %}
+                        <div class="form-group mb-4">
+                            <label class="h6" for="exampleInputDate1">{{ field.label }}</label>
+                            <div class="input-group">
+                                {{ field }}
+                            </div>  
+                        </div>
+                        <span class="text-danger"> {{ field.errors }} </span>
+                        {% endfor %}
+                        <!-- End of Form -->
+                        <div class="d-grid">
+                            <button type="submit" value="{% trans "Enregistrer" %}" class="btn btn-primary">{% trans "Enregistrer" %}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+</main>
+{% endblock content %}
+
+{% load static %}

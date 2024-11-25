@@ -1,0 +1,90 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load cache %}
+
+{% block content %}
+
+{% include 'includes/pre-loader.html' %}
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" style="background-image: url({% static "assets/img/pages/Opportunités.jpg" %});">
+        <div class="container position-relative">
+          <div class="row justify-content-between align-items-center">
+            <div class="col-12 text-center text-white">
+  
+                <h1 class="fw-bolder display-2">{% trans "Nos Opportunités"%}</h1>
+                <p class="lead fw-normal text-muted mb-6 px-lg-10">
+                    {% trans "Nous avons besoin de vous!" %}
+                </p>              <!-- Button Modal -->
+              <div class="d-flex justify-content-around align-items-center mb-5">
+                  {% if request.user.is_superuser %}
+                  <a href="{% url "job_create" %}" class="btn btn-twitter text-white">{% trans "Ajouter un travail" %}</a>
+                  {% endif %}
+              </div>
+  
+            </div>
+          </div>
+        </div>
+        
+    </div><!-- End Page Title -->
+
+
+    <!--End of Title section-->
+<div class="section section-md">
+    <div class="container">
+        <div class="row mb-5">
+            {% if jobs %}
+            {% for job in jobs  %}
+            
+            <div class="col-12 col-md-6 col-lg-4 mb-5 mb-lg-0">
+                <div class="card shadow">
+                    <!-- Header -->
+                    <div class="card-header bg-white p-3 text-center">
+                        <span class="d-block">
+                            <h2 class="display-3 text-dark fw-bold">
+                                {{ job.Nom}}
+                            </h2>
+                            <h4 class="d-block text-gray font-large">{{job.Nombre}}</h4>
+                        </span>
+                    </div>
+                    <!-- End Header -->
+                    <!-- Content -->
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-4">
+                            <li class="list-item pb-3"><strong>{{job.Contrat}}</strong></li>
+                            <li class="list-item pb-3">Lieu : <strong>{{job.Lieu}}</strong></li>
+                            <li class="list-item pb-3">Date limite : <strong>{{job.Dateline}}</strong></li>
+                        </ul>
+                        <div class="d-grid item-align-center">
+                            <a href="{% url "candidat_create" %}" class="btn btn-primary animate-up-1">{% trans "Postuler" %}</a>
+
+                            {% if request.user.is_superuser %}
+                            <div class="row">
+                              <button class="btn rounded" type="button">
+                                <a href="{% url "job_update" job.pk %}" class="btn btn-outline-primary"> {% trans "Modifier" %} </a>
+                              </button>
+                              <button class="btn rounded" type="button">
+                                <form action="{% url 'job_delete' job.pk %}" method="post">
+                                  {% csrf_token %}
+                                  <input type="submit" value=" {% trans "Supprimer" %} " class="btn btn-outline-danger">
+                                </form>
+                              </button>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!-- End Content -->
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+              <p>{% trans "Aucune opportunité disponible" %}</p>
+            {% endif %}
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

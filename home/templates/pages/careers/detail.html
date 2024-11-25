@@ -1,0 +1,73 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<main>
+
+  {% include 'includes/pre-loader_.html' %}
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" style="background-image: url({% static "assets/img/pages/Opportunités.jpg" %});">
+        <div class="container position-relative">
+          <div class="row justify-content-between align-items-center">
+            <div class="col-12 text-center text-white">
+  
+                <h1 class="fw-bolder display-2">{% trans "Nos Opportunités"%}</h1>
+                <p class="lead fw-normal text-muted mb-6 px-lg-10">
+                    {% trans "Nous avons besoin de vous!" %}
+                </p>              <!-- Button Modal -->
+              <div class="d-flex justify-content-around align-items-center mb-5">
+                  {% if request.user.is_superuser %}
+                  <a href="{% url "job_create" %}" class="btn btn-twitter text-white">{% trans "Ajouter un travail" %}</a>
+                  {% endif %}
+              </div>
+  
+            </div>
+          </div>
+        </div>
+        
+    </div><!-- End Page Title -->
+
+  <section class="section section-lg">
+    <div class="container">
+      <div class="row justify-content-between align-items-center mb-5 mb-lg-7">
+        <div class="col-12 col-lg-5 mb-5 mb-lg-0 order-lg-2">
+          <h2 class="h1">{{job.Nom}}</h2>
+          <h2 class="h3">Type de contrat : {{job.Nom}}</h2>
+          <h2 class="h3">Lieu : {{job.Lieu}}</h2>
+          <h2 class="h3">Nombre de poste : {{job.Nombre}}</h2>
+          <h2 class="h3">Date limite : {{job.Dateline}}</h2>
+          <p class="mb-4 lead fw-italic">Publié le : {{job.date_publiee}}</p>
+          {% if request.user.is_superuser %}
+          <div class="row">
+            <div class="col-12 ">
+              <button class="btn rounded" type="button">
+                <a href="{% url "job_update" job.pk %}" class="btn btn-outline-primary"> {% trans "Modifier" %} </a>
+              </button>
+              <button class="btn rounded" type="button">
+                <form action="{% url 'job_delete' job.pk %}" method="post">
+                  {% csrf_token %}
+                  <input type="submit" value=" {% trans "Supprimer" %} " class="btn btn-outline-danger">
+                </form>
+              </button>
+              <button class="btn rounded" type="button">
+                <a href="{% url "jobs" %}" class="btn btn-outline-primary">{% trans "Liste des jobs" %}</a>
+              </button>
+            </div>       
+          </div>
+          {% endif %}
+        </div>
+        <div class="col-12 col-lg-6 order-lg-1">
+          <img src="{% static "assets/img/team/DOUALAIR.png" %}" alt="Front pages overview">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+{% endblock content %}
+
+{% load static %}
+
