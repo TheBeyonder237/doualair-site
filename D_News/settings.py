@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-w6qxfhqytv1n!+wbewq)d1#nd&9bw+o69oe$%(hs6rvt0-e%j6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -151,8 +151,13 @@ LOCALE_PATHS = [
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR,"home", "static")
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, "home", "staticfiles")  # Répertoire pour collecter les fichiers statiques
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "home", "static"),  # Répertoire contenant les fichiers statiques
+]
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
