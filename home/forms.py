@@ -31,7 +31,7 @@ class ContactForm(forms.Form):
             subject=subject,
             message=message,  # Utiliser le message brut ici si nécessaire
             from_email=email,  # L'expéditeur est l'adresse email de l'utilisateur
-            recipient_list=["contact@orizonne.net"],
+            recipient_list=["contact@doualair.com"],
             html_message=body,
             fail_silently=False,
         )
