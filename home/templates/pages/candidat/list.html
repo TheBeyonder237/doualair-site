@@ -74,7 +74,20 @@
             {% else %}
               <p>{% trans "Aucune candidature pour l'instant" %}</p>
             {% endif %}
-            
+
+            {% if cvs_files %}
+              <h3>Liste des CVs disponibles :</h3>
+              <ul>
+                  {% for file in cvs_files %}
+                      <li>
+                          <a href="{{ MEDIA_URL }}cvs/{{ file }}" target="_blank">{{ file }}</a>
+                      </li>
+                  {% endfor %}
+              </ul>
+            {% else %}
+                <p>Aucun CV disponible dans le dossier.</p>
+            {% endif %}
+                
         </div>
     </div>
 </div>

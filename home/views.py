@@ -360,3 +360,22 @@ def candidat(request):
     else:
         form = CandidatForm()
     return render(request, "pages/candidat/form.html", {"form": form})
+
+
+from django.conf import settings
+
+def liste_candidats(request):
+    # Dossier contenant les CVs
+    cvs_directory = os.path.join(settings.MEDIA_ROOT, 'cvs')
+    try:
+        # Lister les fichiers présents dans le dossier
+        cvs_files = os.listdir("cvs_directory")
+    except FileNotFoundError:
+        cvs_files = []
+        
+
+
+    context = {
+        'cvs_files': cvs_files,
+    }
+    return render(request, 'pages/candidat/list.html', context)

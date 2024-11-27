@@ -29,7 +29,13 @@ SECRET_KEY = "django-insecure-w6qxfhqytv1n!+wbewq)d1#nd&9bw+o69oe$%(hs6rvt0-e%j6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*", "https://doualair.cm", "http://doualair.cm"]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://doualair.cm',
+    'https://doualair.cm',  # Si le site est aussi accessible en HTTPS
+]
+
 
 
 # Application definition
@@ -54,6 +60,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    'django.middleware.csrf.CsrfViewMiddleware',
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
